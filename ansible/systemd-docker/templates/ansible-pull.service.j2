@@ -4,8 +4,10 @@ Description=Ansible Pull Service
 [Service]
 Type=oneshot
 
+Environment="ANSIBLE_REMOTE_TEMP=/tmp/.ansible"
+
 ExecStart=/usr/bin/ansible-pull \
-    -U {{ url }} \
+    --url {{ url }} \
     --full \
     {{ playbook }}
 
