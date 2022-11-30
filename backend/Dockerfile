@@ -1,5 +1,5 @@
 ARG RUN_IMAGE=gcr.io/distroless/nodejs18-debian11
-FROM docker.io/library/node:18 AS build-env
+FROM node:18 AS build-env
 
 COPY package*.json /app/
 
