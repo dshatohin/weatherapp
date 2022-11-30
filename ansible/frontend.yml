@@ -4,11 +4,10 @@
   become: true
   vars:
     services:
-    - name: wetherapp-fe
-      image: nginx:1.23
+    - name: weatherapp-frontend
+      image: ghcr.io/dshatohin/weatherapp-frontend:latest
       args:
-      - --publish 80:80
-      - --volume /etc/machine-id:/etc/machine-id:ro
+      - --publish 80:8000
     ansible_pull:
       enabled: true
       minutes_every: 60
