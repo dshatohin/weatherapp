@@ -1,0 +1,19 @@
+---
+- include: docker.yml
+  tags:
+  - docker
+
+- include: extra_packages.yml
+  when: extra_packages is defined
+  tags:
+  - extra_packages
+
+- include: service.yml
+  when: services is defined
+  tags:
+  - service
+
+- include: ansible-pull.yml
+  when: ansible_pull.enabled
+  tags:
+  - ansible-pull

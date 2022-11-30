@@ -1,0 +1,4 @@
+all:
+  hosts:
+    frontend:
+      ansible_host: 20.4.48.151

@@ -1,0 +1,25 @@
+---
+- name: docker service
+  systemd:
+    name: docker.service
+    enabled: true
+    daemon_reload: true
+    state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: ansible-pull service
+  systemd:
+    name: ansible-pull.service
+    enabled: true
+    daemon_reload: true
+    state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: ansible-pull timer
+  systemd:
+    name: ansible-pull.timer
+    enabled: true
+    daemon_reload: true
+    state: started
+  ignore_errors: "{{ ansible_check_mode }}"
+

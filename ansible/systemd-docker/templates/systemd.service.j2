@@ -1,0 +1,25 @@
+[Unit]
+Description={{ name }}
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker rm {{ name }} --force
+
+ExecStart=/usr/bin/docker run \
+    --name {{ name }} \
+{% for arg in args %}
+    {{ arg }} \
+{% endfor %}
+    {{ image }}
+
+ExecStop=-/usr/bin/docker stop {{ name }}
+
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Install]
+WantedBy=multi-user.target
+
+

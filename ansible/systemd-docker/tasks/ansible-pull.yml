@@ -1,0 +1,23 @@
+---
+- name: Create Ansible Pull timer
+  template:
+    src: ansible-pull.timer.j2
+    dest: /etc/systemd/system/ansible-pull.timer
+    owner: root
+    group: root
+    mode: 0755
+  vars:
+    minutes: "{{ ansible_pull.minutes_every }}"
+  notify: ansible-pull timer
+
+- name: Create Ansible Pull service
+  template:
+    src: ansible-pull.service.j2
+    dest: /etc/systemd/system/ansible-pull.service
+    owner: root
+    group: root
+    mode: 0755
+  vars:
+    url: "{{ ansible_pull.url }}"
+    playbook: "{{ ansible_pull.playbook }}"
+  notify: ansible-pull service

@@ -1,0 +1,22 @@
+---
+- name: Create services
+  template:
+    src: systemd.service.j2
+    dest: /etc/systemd/system/{{ item.name }}.service
+    owner: root
+    group: root
+    mode: 0755
+  vars:
+    name: "{{ item.name }}"
+    image: "{{ item.image }}"
+    args: "{{ item.args }}"
+  loop: "{{ services }}"
+
+- name: Enable service
+  systemd:
+    name: "{{ item.name }}.service"
+    enabled: true
+    daemon_reload: true
+    state: restarted
+  loop: "{{ services }}"
+  ignore_errors: "{{ ansible_check_mode }}"

@@ -1,0 +1,9 @@
+[Unit]
+Description=Ansible Pull Timer
+
+[Timer]
+OnCalendar=*:0/{{ minutes }}
+Persistent=true
+
+[Install]
+WantedBy=timers.target

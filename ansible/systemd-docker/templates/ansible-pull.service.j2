@@ -1,0 +1,12 @@
+[Unit]
+Description=Ansible Pull Service
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/bin/ansible-pull \
+    -U {{ url }} \
+    --full \
+    {{ playbook }}
+
+PrivateTmp=true
