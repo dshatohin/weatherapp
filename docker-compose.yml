@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  weatherapp-be:
+    build:
+      context: ./backend
+      args:
+        RUN_IMAGE: node:18
+        NODE_ENV: development
+    environment:
+      APPID: "<insert_your_openweathermap_api_key>"
+      MAP_ENDPOINT: http://api.openweathermap.org/data/2.5
+      TARGET_CITY: "Helsinki,fi"
+      PORT: "9000"
+      DEBUG: weathermap
+    entrypoint: ["npm"]
+    command:
+    - run
+    - dev
+    - --
+    - --legacy-watch
+    - --watch
+    - src/
+    volumes:
+    - ./backend/src:/app/src
+    ports:
+    - 9000:9000
+
+  weatherapp-fe:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile.dev
+    environment:
+      ENDPOINT: http://localhost:9000/api
+    entrypoint: ["npm"]
+    command:
+    - start
+    - --
+    - --content-base
+    - src
+    - --content-base
+    - src/public
+    - --hot
+    volumes:
+    - ./frontend/src:/app/src
+    ports:
+    - 8000:8000

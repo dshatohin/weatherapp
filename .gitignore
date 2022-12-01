@@ -18,5 +18,4 @@ node_modules
 ansible/ansible.cfg
 ansible/vault-password
 
-docker-compose.yml
 notes.md
