@@ -1,0 +1,15 @@
+FROM node:18
+
+COPY package*.json /app/
+
+WORKDIR /app
+
+ENV NODE_ENV=development
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+RUN npm ci
+
+COPY src/. /app/src/
+COPY webpack.config.js /app/
+
+CMD ["npm", "start"]
