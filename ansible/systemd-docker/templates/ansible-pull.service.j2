@@ -5,6 +5,7 @@ Description=Ansible Pull Service
 Type=oneshot
 
 Environment="ANSIBLE_REMOTE_TEMP=/tmp/.ansible"
+Environment="ANSIBLE_VAULT_PASSWORD_FILE=/opt/ansible_vault_key"
 
 ExecStart=/usr/bin/ansible-pull \
     --url {{ url }} \
