@@ -1,0 +1,17 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  vars:
+    services:
+    - name: weatherapp-backend
+      image: ghcr.io/dshatohin/weatherapp-backend:latest
+      args:
+      - --publish 80:9000
+    ansible_pull:
+      enabled: true
+      minutes_every: 60
+      url: https://github.com/dshatohin/weatherapp.git
+      playbook: ansible/backend.yml
+  roles:
+  - systemd-docker
