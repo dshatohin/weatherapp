@@ -7,6 +7,8 @@
     - name: weatherapp-backend
       image: ghcr.io/dshatohin/weatherapp-backend:latest
       args:
+      - --env APPID={{ vault_openweathermap_api_key }}
+      - --env TARGET_CITY=Helsinki,fi
       - --publish 80:9000
     ansible_pull:
       enabled: true
