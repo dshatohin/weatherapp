@@ -1,0 +1,22 @@
+# OSX
+.DS_Store
+
+# Node
+node_modules
+
+# Logs
+*.log
+.terraform/
+*.tfstate*
+*.tfvars
+*plan.txt
+*.tfplan
+.terraform-version
+*.log
+.terraform.lock.hcl
+
+ansible/ansible.cfg
+ansible/vault-password
+
+docker-compose.yml
+notes.md
