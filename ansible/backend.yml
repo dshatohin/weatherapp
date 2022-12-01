@@ -14,7 +14,7 @@
       - --publish 80:9000
     ansible_pull:
       enabled: true
-      minutes_every: 60
+      minutes_every: 30
       url: https://github.com/dshatohin/weatherapp.git
       playbook: ansible/backend.yml
   roles:
